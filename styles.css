@@ -1,0 +1,260 @@
+:root {
+  --bg: #0c0c0d;
+  --surface: #111114;
+  --text: #f2f2f3;
+  --muted: #b4b4bb;
+  --border: #222228;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "SF Pro Text", "SF Pro Display", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(60, 60, 66, 0.32) 0 10rem, transparent 10rem),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0 10%, transparent 10% 20%, rgba(255, 255, 255, 0.035) 20% 30%, transparent 30% 100%),
+    linear-gradient(180deg, #0b0b0d 0%, #0a0a0c 55%, #09090b 100%);
+  color: var(--text);
+  line-height: 1.5;
+  text-transform: lowercase;
+}
+
+.container {
+  width: min(1140px, 92vw);
+  margin: 0 auto;
+}
+
+.site-header {
+  border-bottom: 1px solid var(--border);
+  background: rgba(5, 9, 16, 0.72);
+  backdrop-filter: blur(2px);
+}
+
+.nav-wrap {
+  padding: 1.35rem 0 1.5rem;
+}
+
+.wordmark {
+  margin: 0;
+  font-family: "SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: clamp(1.6rem, 4.8vw, 3.2rem);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+  text-shadow: 0 2px 22px rgba(0, 0, 0, 0.55);
+  white-space: nowrap;
+  text-transform: none;
+}
+
+.subtitle {
+  margin: 0.8rem 0 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+}
+
+.section {
+  padding: 2.4rem 0;
+}
+
+.links {
+  padding: 1.35rem 0 1rem;
+}
+
+.section h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  letter-spacing: 0.01em;
+  font-weight: 600;
+}
+
+.section > .container > p {
+  margin: 0.35rem 0 1.25rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.ads-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.1rem;
+  margin-top: 1rem;
+}
+
+.ad-card {
+  grid-column: span 6;
+  border: 1px solid var(--border);
+  border-radius: 0;
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.video-wrap {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: #0a0a0d;
+  display: grid;
+  place-items: center;
+}
+
+.video-wrap iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.placeholder {
+  color: var(--muted);
+  text-align: center;
+  padding: 1.25rem;
+}
+
+.ad-content {
+  padding: 0.95rem 0.95rem 1.1rem;
+}
+
+.ad-content h4 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.meta {
+  margin: 0.3rem 0 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+}
+
+.load-more {
+  margin-top: 1.25rem;
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 0.65rem 1rem;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+}
+
+.load-more:hover {
+  border-color: #3a3a44;
+}
+
+.load-more:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.link-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem 1.2rem;
+  margin: 0;
+}
+
+.link-list a {
+  color: var(--text);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+}
+
+.link-list a:hover {
+  border-color: var(--text);
+}
+
+.about-lead {
+  margin: 0.35rem 0 1.25rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.resume-flow {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1rem;
+}
+
+.resume-step {
+  grid-column: span 6;
+  border: 1px solid var(--border);
+  padding: 1rem;
+  background: var(--surface);
+}
+
+.resume-step h4 {
+  margin: 0;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  font-weight: 600;
+}
+
+.resume-step p {
+  margin: 0.55rem 0 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 1.75rem 0;
+  background: #0b0b0c;
+}
+
+.footer-wrap {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.footer-wrap p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.footer-wrap h3 {
+  margin: 0;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  font-weight: 600;
+}
+
+.contact-link {
+  text-transform: none;
+}
+
+.footer-wrap a {
+  color: var(--text);
+  text-decoration-color: var(--text);
+  text-underline-offset: 3px;
+}
+
+.contact-link {
+  display: inline-block;
+  color: var(--text);
+  text-decoration-color: var(--text);
+  text-underline-offset: 3px;
+  letter-spacing: 0.03em;
+}
+
+@media (max-width: 900px) {
+  .ad-card {
+    grid-column: span 12;
+  }
+
+  .resume-step {
+    grid-column: span 12;
+  }
+
+  .wordmark {
+    font-size: clamp(1.2rem, 8.1vw, 2rem);
+    letter-spacing: 0.03em;
+    line-height: 1.08;
+  }
+}
