@@ -20,7 +20,6 @@ body {
     linear-gradient(180deg, #0b0b0d 0%, #0a0a0c 55%, #09090b 100%);
   color: var(--text);
   line-height: 1.5;
-  text-transform: lowercase;
 }
 
 .container {
@@ -30,8 +29,8 @@ body {
 
 .site-header {
   border-bottom: 1px solid var(--border);
-  background: rgba(5, 9, 16, 0.72);
-  backdrop-filter: blur(2px);
+  background: rgba(5, 9, 16, 0.66);
+  backdrop-filter: blur(8px);
 }
 
 .nav-wrap {
@@ -49,6 +48,8 @@ body {
   text-shadow: 0 2px 22px rgba(0, 0, 0, 0.55);
   white-space: nowrap;
   text-transform: none;
+  animation: wordmarkReveal 900ms cubic-bezier(0.22, 1, 0.36, 1) both,
+    wordmarkGlow 4.2s ease-in-out 1s infinite;
 }
 
 .subtitle {
@@ -59,7 +60,7 @@ body {
 }
 
 .section {
-  padding: 2.4rem 0;
+  padding: 2.8rem 0;
 }
 
 .links {
@@ -89,9 +90,16 @@ body {
 .ad-card {
   grid-column: span 6;
   border: 1px solid var(--border);
-  border-radius: 0;
+  border-radius: 16px;
   overflow: hidden;
   background: var(--surface);
+  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.ad-card:hover {
+  transform: translateY(-2px);
+  border-color: #2f2f38;
+  box-shadow: 0 18px 30px rgba(0, 0, 0, 0.22);
 }
 
 .video-wrap {
@@ -136,14 +144,17 @@ body {
   background: transparent;
   color: var(--text);
   border: 1px solid var(--border);
-  padding: 0.65rem 1rem;
+  border-radius: 999px;
+  padding: 0.68rem 1.15rem;
   font-size: 0.95rem;
   letter-spacing: 0.02em;
   cursor: pointer;
+  transition: border-color 180ms ease, transform 180ms ease;
 }
 
 .load-more:hover {
   border-color: #3a3a44;
+  transform: translateY(-1px);
 }
 
 .load-more:disabled {
@@ -185,6 +196,7 @@ body {
 .resume-step {
   grid-column: span 6;
   border: 1px solid var(--border);
+  border-radius: 14px;
   padding: 1rem;
   background: var(--surface);
 }
@@ -205,7 +217,7 @@ body {
 .site-footer {
   border-top: 1px solid var(--border);
   padding: 1.75rem 0;
-  background: #0b0b0c;
+  background: rgba(11, 11, 12, 0.92);
 }
 
 .footer-wrap {
@@ -241,6 +253,40 @@ body {
   text-decoration-color: var(--text);
   text-underline-offset: 3px;
   letter-spacing: 0.03em;
+}
+
+@keyframes wordmarkReveal {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+    filter: blur(2px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes wordmarkGlow {
+  0%,
+  100% {
+    text-shadow: 0 2px 22px rgba(0, 0, 0, 0.55);
+  }
+
+  50% {
+    text-shadow: 0 6px 28px rgba(0, 0, 0, 0.64), 0 0 18px rgba(255, 255, 255, 0.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wordmark,
+  .ad-card,
+  .load-more {
+    animation: none;
+    transition: none;
+  }
 }
 
 @media (max-width: 900px) {

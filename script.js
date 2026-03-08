@@ -3,72 +3,84 @@ const advertisements = [
     title: "Automobile Campaign Film",
     client: "Brand / Agency",
     year: "2026",
+    category: "automobile",
     youtubeUrl: "",
   },
   {
     title: "Product Story Ad",
     client: "Brand / Agency",
     year: "2025",
+    category: "products",
     youtubeUrl: "",
   },
   {
     title: "Launch Commercial",
     client: "Brand / Agency",
     year: "2025",
+    category: "branded-content",
     youtubeUrl: "",
   },
   {
     title: "Lifestyle Product Ad",
     client: "Brand / Agency",
     year: "2025",
+    category: "products",
     youtubeUrl: "",
   },
   {
     title: "Category Campaign Film",
     client: "Brand / Agency",
     year: "2024",
+    category: "automobile",
     youtubeUrl: "",
   },
   {
     title: "Technology Product Film",
     client: "Brand / Agency",
     year: "2024",
+    category: "products",
     youtubeUrl: "",
   },
   {
     title: "Brand Film",
     client: "Brand / Agency",
     year: "2024",
+    category: "branded-content",
     youtubeUrl: "",
   },
   {
     title: "Launch Teaser",
     client: "Brand / Agency",
     year: "2024",
+    category: "branded-content",
     youtubeUrl: "",
   },
   {
     title: "Performance Commercial",
     client: "Brand / Agency",
     year: "2023",
+    category: "automobile",
     youtubeUrl: "",
   },
   {
     title: "Product Reveal Ad",
     client: "Brand / Agency",
     year: "2023",
+    category: "products",
     youtubeUrl: "",
   },
   {
     title: "Digital Spot",
     client: "Brand / Agency",
     year: "2023",
+    category: "branded-content",
     youtubeUrl: "",
   },
   {
     title: "Campaign Cut",
     client: "Brand / Agency",
     year: "2024",
+    category: "automobile",
     youtubeUrl: "",
   },
 ];
@@ -134,8 +146,30 @@ function renderAds() {
   if (loadMoreBtn) {
     const allLoaded = visibleItems >= advertisements.length;
     loadMoreBtn.disabled = allLoaded;
-    loadMoreBtn.textContent = allLoaded ? "All Works Loaded" : "Load More";
+    loadMoreBtn.textContent = allLoaded ? "All Work Shown" : "Load More";
   }
+}
+
+function renderCategorySection(containerId, category) {
+  const container = document.getElementById(containerId);
+
+  if (!container) {
+    return;
+  }
+
+  container.innerHTML = "";
+
+  advertisements
+    .filter((ad) => ad.category === category)
+    .forEach((ad) => {
+      container.append(createAdCard(ad));
+    });
+}
+
+function renderCategorySections() {
+  renderCategorySection("automobile-grid", "automobile");
+  renderCategorySection("products-grid", "products");
+  renderCategorySection("branded-content-grid", "branded-content");
 }
 
 function setupLoadMore() {
@@ -153,3 +187,4 @@ function setupLoadMore() {
 
 setupLoadMore();
 renderAds();
+renderCategorySections();
