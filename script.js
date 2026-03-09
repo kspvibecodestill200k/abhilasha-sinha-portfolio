@@ -1,190 +1,119 @@
-const advertisements = [
-  {
-    title: "Automobile Campaign Film",
-    client: "Brand / Agency",
-    year: "2026",
-    category: "automobile",
-    youtubeUrl: "",
-  },
-  {
-    title: "Product Story Ad",
-    client: "Brand / Agency",
-    year: "2025",
-    category: "products",
-    youtubeUrl: "",
-  },
-  {
-    title: "Launch Commercial",
-    client: "Brand / Agency",
-    year: "2025",
-    category: "branded-content",
-    youtubeUrl: "",
-  },
-  {
-    title: "Lifestyle Product Ad",
-    client: "Brand / Agency",
-    year: "2025",
-    category: "products",
-    youtubeUrl: "",
-  },
-  {
-    title: "Category Campaign Film",
-    client: "Brand / Agency",
-    year: "2024",
-    category: "automobile",
-    youtubeUrl: "",
-  },
-  {
-    title: "Technology Product Film",
-    client: "Brand / Agency",
-    year: "2024",
-    category: "products",
-    youtubeUrl: "",
-  },
-  {
-    title: "Brand Film",
-    client: "Brand / Agency",
-    year: "2024",
-    category: "branded-content",
-    youtubeUrl: "",
-  },
-  {
-    title: "Launch Teaser",
-    client: "Brand / Agency",
-    year: "2024",
-    category: "branded-content",
-    youtubeUrl: "",
-  },
-  {
-    title: "Performance Commercial",
-    client: "Brand / Agency",
-    year: "2023",
-    category: "automobile",
-    youtubeUrl: "",
-  },
-  {
-    title: "Product Reveal Ad",
-    client: "Brand / Agency",
-    year: "2023",
-    category: "products",
-    youtubeUrl: "",
-  },
-  {
-    title: "Digital Spot",
-    client: "Brand / Agency",
-    year: "2023",
-    category: "branded-content",
-    youtubeUrl: "",
-  },
-  {
-    title: "Campaign Cut",
-    client: "Brand / Agency",
-    year: "2024",
-    category: "automobile",
-    youtubeUrl: "",
-  },
+﻿const advertisements = [
+	{ brand: "Tata Motors", title: "Nexon - Born For More", youtubeId: "dQw4w9WgXcQ", category: "new-work" },
+	{ brand: "Mahindra", title: "XUV700 - Drive The Future", youtubeId: "3JZ_D3ELwOQ", category: "new-work" },
+	{ brand: "Hero MotoCorp", title: "Splendor+ - Every Mile Counts", youtubeId: "oHg5SJYRHA0", category: "new-work" },
+	{ brand: "Tata Motors", title: "Nexon - Born For More", youtubeId: "dQw4w9WgXcQ", category: "automobile" },
+	{ brand: "Mahindra", title: "XUV700 - Drive The Future", youtubeId: "3JZ_D3ELwOQ", category: "automobile" },
+	{ brand: "Hero MotoCorp", title: "Splendor+ - Every Mile Counts", youtubeId: "oHg5SJYRHA0", category: "automobile" },
+	{ brand: "FMCG", title: "Product Launch Film", youtubeId: "L_jWHffIx5E", category: "products" },
+	{ brand: "Tech", title: "Device Reveal", youtubeId: "fJ9rUzIMcZQ", category: "products" },
+	{ brand: "Brand Story", title: "Campaign Film", youtubeId: "9bZkp7q19f0", category: "branded" },
+	{ brand: "NGO", title: "Documentary Short", youtubeId: "CevxZvSJLk8", category: "branded" }
 ];
 
-const itemsPerPage = 6;
-let visibleItems = itemsPerPage;
+const newWorkGrid = document.getElementById("new-work-grid");
+const loadMoreBtn = document.getElementById("load-more-btn");
 
-function getYouTubeEmbedUrl(url) {
-  if (!url) {
-    return "";
-  }
+const modal = document.getElementById("modal");
+const modalIframe = document.getElementById("modal-iframe");
+const modalBox = document.getElementById("modal-box");
+const modalClose = document.getElementById("modal-close");
 
-  try {
-    const parsed = new URL(url);
-    if (parsed.hostname.includes("youtu.be")) {
-      return `https://www.youtube.com/embed/${parsed.pathname.replace("/", "")}`;
-    }
-    if (parsed.hostname.includes("youtube.com")) {
-      const id = parsed.searchParams.get("v");
-      return id ? `https://www.youtube.com/embed/${id}` : "";
-    }
-  } catch {
-    return "";
-  }
+const BATCH_SIZE = 3;
+let visibleNewWork = BATCH_SIZE;
 
-  return "";
+function createVideoCard(video, dark = false) {
+	const card = document.createElement("article");
+	card.className = `video-card${dark ? " dark" : ""}`;
+
+	card.innerHTML = `
+		<div class="video-thumb">
+			<img src="https://img.youtube.com/vi/${video.youtubeId}/hqdefault.jpg" alt="${video.title} thumbnail" loading="lazy" />
+			<button class="play-btn" type="button" aria-label="Play ${video.title}">
+				<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
+			</button>
+		</div>
+		<div class="video-info">
+			<p class="video-brand">${video.brand}</p>
+			<p class="video-title">${video.title}</p>
+		</div>
+	`;
+
+	card.querySelector(".play-btn").addEventListener("click", () => openModal(video.youtubeId));
+	return card;
 }
 
-function createAdCard(ad) {
-  const article = document.createElement("article");
-  article.className = "ad-card";
+function renderCategory(category, gridId) {
+	const grid = document.getElementById(gridId);
+	if (!grid) {
+		return;
+	}
 
-  const embedUrl = getYouTubeEmbedUrl(ad.youtubeUrl);
-  const videoHtml = embedUrl
-    ? `<iframe src="${embedUrl}" title="${ad.title}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`
-    : `<div class="placeholder">Add a YouTube link in <strong>script.js</strong> to display this video.</div>`;
-
-  article.innerHTML = `
-    <div class="video-wrap">${videoHtml}</div>
-    <div class="ad-content">
-      <h4>${ad.title}</h4>
-      <p class="meta">${ad.client} · ${ad.year}</p>
-    </div>
-  `;
-
-  return article;
+	const dark = category === "branded";
+	const items = advertisements.filter((ad) => ad.category === category);
+	items.forEach((item) => grid.appendChild(createVideoCard(item, dark)));
 }
 
-function renderAds() {
-  const container = document.getElementById("ads-grid");
-  const loadMoreBtn = document.getElementById("load-more");
+function renderNewWork() {
+	const items = advertisements.filter((ad) => ad.category === "new-work");
+	newWorkGrid.innerHTML = "";
 
-  if (!container) {
-    return;
-  }
+	items.slice(0, visibleNewWork).forEach((item) => {
+		newWorkGrid.appendChild(createVideoCard(item));
+	});
 
-  container.innerHTML = "";
-
-  advertisements.slice(0, visibleItems).forEach((ad) => {
-    container.append(createAdCard(ad));
-  });
-
-  if (loadMoreBtn) {
-    const allLoaded = visibleItems >= advertisements.length;
-    loadMoreBtn.disabled = allLoaded;
-    loadMoreBtn.textContent = allLoaded ? "All Work Shown" : "Load More";
-  }
+	loadMoreBtn.style.display = visibleNewWork >= items.length ? "none" : "inline-block";
 }
 
-function renderCategorySection(containerId, category) {
-  const container = document.getElementById(containerId);
-
-  if (!container) {
-    return;
-  }
-
-  container.innerHTML = "";
-
-  advertisements
-    .filter((ad) => ad.category === category)
-    .forEach((ad) => {
-      container.append(createAdCard(ad));
-    });
+function openModal(videoId) {
+	modalIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+	modal.classList.add("active");
+	modal.setAttribute("aria-hidden", "false");
+	document.body.style.overflow = "hidden";
 }
 
-function renderCategorySections() {
-  renderCategorySection("automobile-grid", "automobile");
-  renderCategorySection("products-grid", "products");
-  renderCategorySection("branded-content-grid", "branded-content");
+function closeModal() {
+	modal.classList.remove("active");
+	modal.setAttribute("aria-hidden", "true");
+	modalIframe.src = "";
+	document.body.style.overflow = "";
 }
 
-function setupLoadMore() {
-  const loadMoreBtn = document.getElementById("load-more");
+function initFadeObserver() {
+	document.documentElement.classList.add("js-ready");
 
-  if (!loadMoreBtn) {
-    return;
-  }
+	const observer = new IntersectionObserver((entries) => {
+		entries.forEach((entry) => {
+			if (entry.isIntersecting) {
+				entry.target.classList.add("visible");
+			}
+		});
+	}, { threshold: 0.05 });
 
-  loadMoreBtn.addEventListener("click", () => {
-    visibleItems = Math.min(visibleItems + itemsPerPage, advertisements.length);
-    renderAds();
-  });
+	document.querySelectorAll(".fade-in").forEach((el) => observer.observe(el));
 }
 
-setupLoadMore();
-renderAds();
-renderCategorySections();
+renderCategory("automobile", "automobile-grid");
+renderCategory("products", "products-grid");
+renderCategory("branded", "branded-grid");
+renderNewWork();
+initFadeObserver();
+
+loadMoreBtn.addEventListener("click", () => {
+	visibleNewWork += BATCH_SIZE;
+	renderNewWork();
+});
+
+modalClose.addEventListener("click", closeModal);
+
+modal.addEventListener("click", (event) => {
+	if (!modalBox.contains(event.target)) {
+		closeModal();
+	}
+});
+
+document.addEventListener("keydown", (event) => {
+	if (event.key === "Escape") {
+		closeModal();
+	}
+});

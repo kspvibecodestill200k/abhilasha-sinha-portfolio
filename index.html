@@ -1,110 +1,108 @@
-<!doctype html>
+﻿<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Abhilasha Sinha — selected commercial films and advertisements for brands, agencies, and producers."
-    />
-    <title>Abhilasha Sinha | Filmmaker Portfolio</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <header class="site-header">
-      <div class="container nav-wrap">
-        <h1 class="wordmark">Abhilasha Sinha</h1>
-        <p class="subtitle">Commercial Filmmaker · India / International</p>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abhilasha Sinha | Filmmaker</title>
+  <link href="https://fonts.googleapis.com/css2?family=Mona+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <nav>
+    <a href="#home" class="nav-logo">Abhilasha Sinha</a>
+    <ul class="nav-links">
+      <li><a href="#new-work">New Work</a></li>
+      <li><a href="#automobile">Automobile</a></li>
+      <li><a href="#products">Products</a></li>
+      <li><a href="#branded">Branded</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero bg-graph-light" id="home">
+    <div class="hero-inner">
+      <p class="hero-eyebrow">Commercial Filmmaker - India / International</p>
+      <h1><span class="highlight-word">Abhilasha</span><br />Sinha</h1>
+      <p class="hero-tagline">Telling stories through moving images - automobiles, products, and the brands that shape everyday life.</p>
+      <a href="#new-work" class="hero-cta">View Work</a>
+    </div>
+  </section>
+
+  <svg class="handdrawn-divider" height="24" viewBox="0 0 1440 24" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,12 Q180,4 360,12 T720,10 T1080,14 T1440,12" stroke="rgba(90,80,60,0.25)" stroke-width="2" fill="none"/>
+  </svg>
+
+  <section class="bg-graph-light fade-in" id="new-work">
+    <p class="section-label">Portfolio</p>
+    <h2>New Work</h2>
+    <div class="video-grid" id="new-work-grid"></div>
+    <div class="load-more-wrap">
+      <button class="hero-cta load-more-btn" id="load-more-btn" type="button">Load More</button>
+    </div>
+  </section>
+
+  <section class="bg-graph-light fade-in" id="automobile">
+    <p class="section-label">Portfolio</p>
+    <h2>Automobile</h2>
+    <div class="video-grid" id="automobile-grid"></div>
+  </section>
+
+  <section class="bg-graph-light fade-in" id="products">
+    <p class="section-label">Portfolio</p>
+    <h2>Products</h2>
+    <div class="video-grid" id="products-grid"></div>
+  </section>
+
+  <section class="bg-graph-dark fade-in" id="branded">
+    <span class="stamp">Selected Work</span>
+    <p class="section-label">Portfolio</p>
+    <h2>Branded Content</h2>
+    <div class="video-grid" id="branded-grid"></div>
+  </section>
+
+  <section class="bg-graph-dark fade-in" id="about">
+    <p class="section-label">Background</p>
+    <h2>About Abhilasha</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>Commercial filmmaker based in India, working across domestic and international markets. Specializing in automobile, product, and branded content films for agencies and direct brands.</p>
+        <p>Every film is a collaboration - between light, motion, story, and the people who make it possible.</p>
       </div>
-    </header>
-
-    <main>
-      <section class="section links" aria-label="Portfolio sections">
-        <div class="container">
-          <nav class="link-list" aria-label="Portfolio sections">
-            <a href="#new-work">New Work</a>
-            <a href="#automobile">Automobile</a>
-            <a href="#products">Products</a>
-            <a href="#branded-content">Branded Content</a>
-            <a href="#about-abhilasha">About Abhilasha</a>
-            <a href="#contact">Contact</a>
-          </nav>
-        </div>
-      </section>
-
-      <section class="section" id="new-work" aria-labelledby="ads-heading">
-        <div class="container">
-          <h3 id="ads-heading">New Work</h3>
-          <div id="ads-grid" class="ads-grid" aria-live="polite"></div>
-          <button id="load-more" class="load-more" type="button">Load More</button>
-        </div>
-      </section>
-
-      <section class="section" id="automobile" aria-labelledby="automobile-heading">
-        <div class="container">
-          <h3 id="automobile-heading">Automobile</h3>
-          <div id="automobile-grid" class="ads-grid" aria-live="polite"></div>
-        </div>
-      </section>
-
-      <section class="section" id="products" aria-labelledby="products-heading">
-        <div class="container">
-          <h3 id="products-heading">Products</h3>
-          <div id="products-grid" class="ads-grid" aria-live="polite"></div>
-        </div>
-      </section>
-
-      <section class="section" id="branded-content" aria-labelledby="branded-heading">
-        <div class="container">
-          <h3 id="branded-heading">Branded Content</h3>
-          <div id="branded-content-grid" class="ads-grid" aria-live="polite"></div>
-        </div>
-      </section>
-
-      <section class="section" id="about-abhilasha" aria-labelledby="about-heading">
-        <div class="container">
-          <h3 id="about-heading">About Abhilasha</h3>
-          <p class="about-lead">
-            A concise resume journey from education to professional filmmaking.
-          </p>
-          <div class="resume-flow" role="list" aria-label="Resume timeline">
-            <div class="resume-step" role="listitem">
-              <h4>School</h4>
-              <p>Foundation in storytelling, visual arts, and communication.</p>
-            </div>
-            <div class="resume-step" role="listitem">
-              <h4>College</h4>
-              <p>Formal study in media, film language, and production practice.</p>
-            </div>
-            <div class="resume-step" role="listitem">
-              <h4>Internships</h4>
-              <p>On-set experience with agencies and production teams across ad films.</p>
-            </div>
-            <div class="resume-step" role="listitem">
-              <h4>Career</h4>
-              <p>
-                Commercial filmmaker delivering advertisements in automobiles, products,
-                and branded content for brands, agencies, and producers.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-    </main>
-
-    <footer class="site-footer">
-      <div class="container footer-wrap" id="contact">
-        <h3>Contact</h3>
-        <p>For projects and inquiries.</p>
-        <a class="contact-link" href="mailto:abhilasha.sinha@example.com">
-          abhilasha.sinha@example.com
-        </a>
+      <div class="timeline">
+        <div class="timeline-item"><div class="timeline-dot"></div><div><p class="timeline-label">School</p><p class="timeline-desc">Foundation in storytelling, visual arts, and communication.</p></div></div>
+        <div class="timeline-item"><div class="timeline-dot"></div><div><p class="timeline-label">College</p><p class="timeline-desc">Formal study in media, film language, and production practice.</p></div></div>
+        <div class="timeline-item"><div class="timeline-dot"></div><div><p class="timeline-label">Internships</p><p class="timeline-desc">On-set experience with agencies and production teams across ad films.</p></div></div>
+        <div class="timeline-item"><div class="timeline-dot"></div><div><p class="timeline-label">Career</p><p class="timeline-desc">Commercial filmmaker delivering advertisements for brands, agencies, and producers worldwide.</p></div></div>
       </div>
-    </footer>
+    </div>
+  </section>
 
-    <script src="script.js"></script>
-  </body>
+  <section class="bg-graph-light fade-in" id="contact">
+    <div class="contact-inner">
+      <p class="section-label">Get in touch</p>
+      <h2>Have a project?</h2>
+      <p>Open to commercial film projects, brand collaborations, and story submissions from across India and internationally.</p>
+      <a href="mailto:abhilasha.sinha@example.com" class="contact-email">abhilasha.sinha@example.com</a>
+    </div>
+  </section>
+
+  <footer class="bg-graph-light">
+    <p>&copy; Abhilasha Sinha 2026</p>
+    <ul class="social-links">
+      <li><a href="#">Instagram</a></li>
+      <li><a href="#">Vimeo</a></li>
+      <li><a href="#">LinkedIn</a></li>
+    </ul>
+  </footer>
+
+  <div class="modal-overlay" id="modal" aria-hidden="true">
+    <div class="modal-box" id="modal-box" role="dialog" aria-label="Video player">
+      <button class="modal-close" id="modal-close" type="button">X Close</button>
+      <iframe id="modal-iframe" src="" allowfullscreen allow="autoplay"></iframe>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
 </html>
